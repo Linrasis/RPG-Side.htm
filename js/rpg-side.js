@@ -145,9 +145,9 @@ function draw(){
     buffer.textBaseline = 'middle';
 
     buffer.fillText(
-      player['spellbook'][player['selected']]['current']
+      player['spellbook'][player['spellbar'][player['selected']]]['current']
         + '/'
-        + player['spellbook'][player['selected']]['reload'],
+        + player['spellbook'][player['spellbar'][player['selected']]]['reload'],
       100,
       225
     );
@@ -214,6 +214,21 @@ function draw(){
           'YOU ARE DEAD',
           x,
           220
+        );
+    }
+
+    buffer.textAlign = 'left';
+    for(var spell in player['spellbar']){
+        buffer.fillText(
+          spell
+            + ': '
+            + player['spellbar'][spell]
+            + (spell == player['selected']
+              ? ', selected'
+              : ''
+            ),
+          0,
+          250 + 25 * parseInt(spell)
         );
     }
 
@@ -370,12 +385,12 @@ function logic(){
     }
 
     // Fire player spells.
-    if(player['spellbook'][player['selected']]['current'] >= player['spellbook'][player['selected']]['reload']){
+    if(player['spellbook'][player['spellbar'][player['selected']]]['current'] >= player['spellbook'][player['spellbar'][player['selected']]]['reload']){
        if(mouse_lock_x > -1
-          && player['stats']['mana']['current'] >= player['spellbook'][player['selected']]['cost']){
-            player['spellbook'][player['selected']]['current'] = 0;
+          && player['stats']['mana']['current'] >= player['spellbook'][player['spellbar'][player['selected']]]['cost']){
+            player['spellbook'][player['spellbar'][player['selected']]]['current'] = 0;
             player['stats']['mana']['current'] = Math.max(
-              player['stats']['mana']['current'] - player['spellbook'][player['selected']]['cost'],
+              player['stats']['mana']['current'] - player['spellbook'][player['spellbar'][player['selected']]]['cost'],
               0
             );
 
@@ -392,7 +407,7 @@ function logic(){
               'color': '#f00',
               'dx': (mouse_x > x ? speeds[0] : -speeds[0]),
               'dy': (mouse_y > y ? speeds[1] : -speeds[1]),
-              'lifespan': player['spellbook'][player['selected']]['lifespan'],
+              'lifespan': player['spellbook'][player['spellbar'][player['selected']]]['lifespan'],
               'owner': -1,
               'x': player['x'],
               'y': player['y'],
@@ -400,7 +415,7 @@ function logic(){
         }
 
     }else{
-        player['spellbook'][player['selected']]['current'] += 1;
+        player['spellbook'][player['spellbar'][player['selected']]]['current'] += 1;
     }
 
     // Handle NPCs.
@@ -500,7 +515,7 @@ function logic(){
               1
             );
 
-            npcs[npc]['stats']['health']['current'] -= player['spellbook'][player['selected']]['damage'];
+            npcs[npc]['stats']['health']['current'] -= player['spellbook'][player['spellbar'][player['selected']]]['damage'];
             if(npcs[npc]['stats']['health']['current'] <= 0){
                 npcs.splice(
                   npc,
@@ -510,6 +525,23 @@ function logic(){
 
             break;
         }
+    }
+}
+
+function mouse_wheel(e){
+    if(mode <= 0){
+        return;
+    }
+
+    player['selected'] += (e.wheelDelta || -e.detail > 0) > 0
+      ? -1
+      : 1;
+
+    if(player['selected'] < 0){
+        player['selected'] = 9;
+
+    }else if(player['selected'] > 9){
+        player['selected'] = 0;
     }
 }
 
@@ -623,7 +655,19 @@ function setmode(newmode, newgame){
             'torso': void 0,
           },
           'inventory': [],
-          'selected': 'bolt',
+          'selected': 0,
+          'spellbar': {
+            0: 'bolt',
+            1: 'bolt',
+            2: 'bolt',
+            3: 'bolt',
+            4: 'bolt',
+            5: 'bolt',
+            6: 'bolt',
+            7: 'bolt',
+            8: 'bolt',
+            9: 'bolt',
+          },
           'spellbook': {
             'bolt': {
               'cost': 1,
@@ -736,6 +780,11 @@ window.onkeydown = function(e){
           true
         );
         return;
+
+    }else if(key > 47
+      && key < 58){
+        player['selected'] = key - 48;
+        return;
     }
 
     key = String.fromCharCode(key);
@@ -767,6 +816,17 @@ window.onkeyup = function(e){
 };
 
 window.onload = function(e){
+    if('onmousewheel' in window){
+        window.onmousewheel = mouse_wheel;
+
+    }else{
+        document.addEventListener(
+          'DOMMouseScroll',
+          mouse_wheel,
+          false
+        );
+    }
+
     setmode(
       0,
       true
