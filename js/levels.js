@@ -14,6 +14,11 @@ function load_level(id){
       'x': -125,
       'y': 0,
     });
+    create_world_dynamic({
+      'color': '#555',
+      'x': 75,
+      'y': -50,
+    });
 
     create_world_dynamic({
       'collision': false,
