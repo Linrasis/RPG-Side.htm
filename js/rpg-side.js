@@ -221,7 +221,7 @@ function draw(){
         buffer.fillText(
           'ESC = Main Menu',
           x,
-          175
+          220
         );
 
         buffer.fillStyle = '#f00';
@@ -229,7 +229,7 @@ function draw(){
         buffer.fillText(
           'YOU ARE DEAD',
           x,
-          220
+          175
         );
     }
 
