@@ -792,7 +792,7 @@ var npcs = [];
 var particles = [];
 var player = {};
 var settings = {
-  'audio-volume': window.localStorage.getItem('RPG-Side.htm-audio-volume') != null
+  'audio-volume': window.localStorage.getItem('RPG-Side.htm-audio-volume') !== null
     ? parseFloat(window.localStorage.getItem('RPG-Side.htm-audio-volume'))
     : 1,
   'color': window.localStorage.getItem('RPG-Side.htm-color') || '#009900',
