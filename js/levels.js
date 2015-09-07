@@ -63,6 +63,14 @@ function load_level(id){
       'x': 75,
       'y': -50,
     });
+    loop_counter = 9;
+    do{
+        create_world_dynamic({
+          'color': '#555',
+          'x': -175 + 25 * loop_counter,
+          'y': 150,
+        });
+    }while(loop_counter--);
 
     create_world_dynamic({
       'collision': false,
@@ -94,8 +102,8 @@ function load_level(id){
 
     create_npc({
       'friendly': true,
-      'x': -200,
-      'y': 100,
+      'x': 0,
+      'y': 115,
     });
     create_npc({
       'selected': 'bolt',
