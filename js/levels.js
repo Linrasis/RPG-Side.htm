@@ -146,9 +146,9 @@ function load_level(id){
       'y': 115,
     });
     create_npc({
-      'selected': 'bolt',
+      'selected': 'manabolt',
       'spellbook': {
-        'bolt': {
+        'manabolt': {
           'color': '#f00',
           'current': 0,
           'damage': 1,
