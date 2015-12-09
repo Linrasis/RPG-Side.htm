@@ -161,7 +161,7 @@ function draw(){
 
     buffer.restore();
 
-    // Draw player.
+    // Draw player and targeting direction.
     buffer.fillStyle = settings['color'];
     buffer.fillRect(
       -17,
@@ -169,6 +169,25 @@ function draw(){
       34,
       34
     );
+    var endpoint = get_fixed_length_line(
+      0,
+      0,
+      mouse_x - x,
+      mouse_y - y,
+      25
+    );
+    buffer.beginPath();
+    buffer.moveTo(
+      0,
+      0
+    );
+    buffer.lineTo(
+      endpoint['x'],
+      endpoint['y']
+    );
+    buffer.closePath();
+    buffer.strokeStyle = '#fff';
+    buffer.stroke();
 
     buffer.restore();
 
@@ -315,6 +334,28 @@ function effect_player(stat, effect){
         player['stats'][stat]['current'] = player['stats'][stat]['max'];
         player['stats'][stat]['regeneration']['current'] = 0;
     }
+}
+
+function get_fixed_length_line(x0, y0, x1, y1, length){
+    var distance = Math.sqrt(
+      Math.pow(
+        x1 - x0,
+        2
+      ) + Math.pow(
+        y1 - y0,
+        2
+      )
+    );
+
+    x1 /= distance;
+    x1 *= length;
+    y1 /= distance;
+    y1 *= length;
+
+    return {
+      'x': x1,
+      'y': y1,
+    };
 }
 
 function get_movement_speed(x0, y0, x1, y1){
