@@ -733,13 +733,14 @@ function save(){
       'ms-per-frame': 25,
     };
     for(var id in ids){
-        if(isNaN(document.getElementById(id).value)
-          || document.getElementById(id).value == ids[id]){
+        var value = document.getElementById(id).value;
+        if(value == ids[id]
+          || isNaN(value)){
             window.localStorage.removeItem('RPG-Side.htm-' + id);
             settings[id] = ids[id];
 
         }else{
-            settings[id] = parseFloat(document.getElementById(id).value);
+            settings[id] = parseFloat(value);
             window.localStorage.setItem(
               'RPG-Side.htm-' + id,
               settings[id]
@@ -753,12 +754,13 @@ function save(){
       'movement-keys': 'AD',
     };
     for(id in ids){
-        if(document.getElementById(id).value === ids[id]){
+        value = document.getElementById(id).value;
+        if(value === ids[id]){
             window.localStorage.removeItem('RPG-Side.htm-' + id);
             settings[id] = ids[id];
 
         }else{
-            settings[id] = document.getElementById(id).value;
+            settings[id] = value;
             window.localStorage.setItem(
               'RPG-Side.htm-' + id,
               settings[id]
