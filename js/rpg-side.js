@@ -222,14 +222,6 @@ function draw(){
     buffer.textBaseline = 'middle';
 
     buffer.fillText(
-      player['spellbook'][player['spellbar'][player['selected']]]['current']
-        + '/'
-        + player['spellbook'][player['spellbar'][player['selected']]]['reload'],
-      100,
-      225
-    );
-
-    buffer.fillText(
       player['stats']['health']['current'],
       50,
       25
@@ -276,19 +268,21 @@ function draw(){
       175
     );
 
-    buffer.textAlign = 'left';
-    for(var spell in player['spellbar']){
-        buffer.fillText(
-          spell
-            + ': '
-            + player['spellbar'][spell]
-            + (spell == player['selected']
-              ? ', selected'
-              : ''
-            ),
-          0,
-          250 + 25 * parseInt(spell)
-        );
+    if(ui === 3){
+        buffer.textAlign = 'left';
+        for(var spell in player['spellbar']){
+            buffer.fillText(
+              spell
+                + ': '
+                + player['spellbar'][spell]
+                + (spell == player['selected']
+                  ? ', selected'
+                  : ''
+                ),
+              205,
+              25 * parseInt(spell) - 12
+            );
+        }
     }
 
     // Draw game over messages.
@@ -702,10 +696,13 @@ function reset(){
     }
 
     document.getElementById('audio-volume').value = 1;
+    document.getElementById('character-key').value = 'C';
     document.getElementById('color').value = '#009900';
+    document.getElementById('inventory-key').value = 'B';
     document.getElementById('jump-key').value = 'W';
     document.getElementById('movement-keys').value = 'AD';
     document.getElementById('ms-per-frame').value = 25;
+    document.getElementById('spellbook-key').value = 'V';
 
     save();
 }
@@ -749,9 +746,12 @@ function save(){
     }
 
     ids = {
+      'character-key': 'C',
       'color': '#009900',
+      'inventory-key': 'B',
       'jump-key': 'W',
-      'movement-keys': 'AD',
+      'movement-keys': 'WASD',
+      'spellbook-key': 'V',
     };
     for(id in ids){
         value = document.getElementById(id).value;
@@ -818,6 +818,8 @@ function setmode(newmode, newgame){
             resize();
         }
 
+        ui = 0;
+
         load_level(0);
         select_spell(player['selected']);
 
@@ -834,9 +836,12 @@ function setmode(newmode, newgame){
     buffer = 0;
     canvas = 0;
 
-    document.body.innerHTML = '<div><div><a onclick="setmode(1, true)">Test Level</a></div></div><div class=right><div><input disabled value=Click>Cast Spell<br><input id=jump-key maxlength=1 value='
+    document.body.innerHTML = '<div><div><a onclick="setmode(1, true)">Test Level</a></div></div><div class=right><div><input disabled value=Click>Cast Spell<br><input id=character-key maxlength=1 value='
+      + settings['character-key'] + '>Character Info<br><input id=inventory-key maxlength=1 value='
+      + settings['inventory-key'] + '>Inventory<br><input id=jump-key maxlength=1 value='
       + settings['jump-key'] + '>Jump<br><input disabled value=ESC>Main Menu<br><input id=movement-keys maxlength=2 value='
-      + settings['movement-keys'] + '>Move ←→<br><input disabled value="0 - 9">Select Spell</div><hr><div><input id=audio-volume max=1 min=0 step=0.01 type=range value='
+      + settings['movement-keys'] + '>Move ←→<br><input disabled value="0 - 9">Select Spell<br><input id=spellbook-key maxlength=1 value='
+      + settings['spellbook-key'] + '>Spellbook</div><hr><div><input id=audio-volume max=1 min=0 step=0.01 type=range value='
       + settings['audio-volume'] + '>Audio<br><input id=color type=color value='
       + settings['color'] + '>Color<br><input id=ms-per-frame value='
       + settings['ms-per-frame'] + '>ms/Frame<br><a onclick=reset()>Reset Settings</a></div></div>';
@@ -864,11 +869,15 @@ var settings = {
   'audio-volume': window.localStorage.getItem('RPG-Side.htm-audio-volume') !== null
     ? parseFloat(window.localStorage.getItem('RPG-Side.htm-audio-volume'))
     : 1,
+  'character-key': window.localStorage.getItem('RPG-Above.htm-character-key') || 'C',
   'color': window.localStorage.getItem('RPG-Side.htm-color') || '#009900',
+  'inventory-key': window.localStorage.getItem('RPG-Above.htm-inventory-key') || 'B',
   'jump-key': window.localStorage.getItem('RPG-Side.htm-jump-key') || 'W',
   'movement-keys': window.localStorage.getItem('RPG-Side.htm-movement-keys') || 'AD',
   'ms-per-frame': parseInt(window.localStorage.getItem('RPG-Side.htm-ms-per-frame')) || 25,
+  'spellbook-key': window.localStorage.getItem('RPG-Above.htm-spellbook-key') || 'V',
 };
+var ui = 0;
 var x = 0;
 var width = 0;
 var world_dynamic = [];
@@ -910,6 +919,21 @@ window.onkeydown = function(e){
 
     }else if(key === settings['jump-key']){
         key_jump = true;
+
+    }else if(key === settings['character-key']){
+        ui = ui === 0
+          ? 1
+          : 0;
+
+    }else if(key === settings['inventory-key']){
+        ui = ui === 0
+          ? 2
+          : 0;
+
+    }else if(key === settings['spellbook-key']){
+        ui = ui === 0
+          ? 3
+          : 0;
     }
 };
 
