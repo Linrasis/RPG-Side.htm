@@ -197,7 +197,7 @@ function draw(){
       0,
       0,
       200,
-      200
+      250
     );
 
     buffer.fillStyle = '#0a0';
@@ -991,7 +991,9 @@ window.onload = function(e){
 };
 
 window.onmousedown = function(e){
-    if(mode <= 0){
+    if(mode <= 0
+      || (mouse_x <= 200
+        && mouse_y <= 250)){
         return;
     }
 
