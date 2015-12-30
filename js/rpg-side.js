@@ -750,11 +750,10 @@ function save(){
       'ms-per-frame': 25,
     };
     for(var id in ids){
-        var value = document.getElementById(id).value;
-        settings[id] = parseFloat(value);
+        settings[id] = parseFloat(document.getElementById(id).value);
 
-        if(value == ids[id]
-          || isNaN(value)){
+        if(settings[id] == ids[id]
+          || isNaN(settings[id])){
             window.localStorage.removeItem('RPG-Side.htm-' + id);
 
         }else{
@@ -774,10 +773,9 @@ function save(){
       'spellbook-key': 'V',
     };
     for(id in ids){
-        value = document.getElementById(id).value;
-        settings[id] = value;
+        settings[id] = document.getElementById(id).value;
 
-        if(value === ids[id]){
+        if(settings[id] === ids[id]){
             window.localStorage.removeItem('RPG-Side.htm-' + id);
 
         }else{
