@@ -8,8 +8,11 @@ RPG-Side.htm
 Action                | Key
 ----------------------|------------
 Cast Selected Spell   | Mouse Click
+Character Info        | C
+Inventory             | B
 Jump                  | W
 Move Player           | AD
 Return to Main Menu   | ESC
 Scroll through Spells | Mouse Wheel
 Select Spell          | 0 - 9
+Spellbook             | V
