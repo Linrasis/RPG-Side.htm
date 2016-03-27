@@ -1,5 +1,5 @@
-RPG-Side.htm
-------------
+iterami/RPG-Side.htm
+--------------------
 
 2D roleplaying web game from a side perspective.
 
