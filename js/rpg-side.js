@@ -244,8 +244,10 @@ function draw(){
 
     buffer.font = '16pt sans-serif';
     buffer.fillText(
-      parseInt(player['stats']['health']['current'] * 100 / player['stats']['health']['max'])
-        + '%',
+      parseInt(
+        player['stats']['health']['current'] * 100 / player['stats']['health']['max'],
+        10
+      ) + '%',
       150,
       25
     );
@@ -256,8 +258,10 @@ function draw(){
       75
     );
     buffer.fillText(
-      parseInt(player['stats']['mana']['current'] * 100 / player['stats']['mana']['max'])
-        + '%',
+      parseInt(
+        player['stats']['mana']['current'] * 100 / player['stats']['mana']['max'],
+        10
+      ) + '%',
       150,
       125
     );
@@ -295,7 +299,10 @@ function draw(){
                   : ''
                 ),
               205,
-              25 * parseInt(spell) - 12
+              25 * parseInt(
+                spell,
+                10
+              ) - 12
             );
         }
     }
@@ -883,7 +890,7 @@ var settings = {
   'inventory-key': window.localStorage.getItem('RPG-Above.htm-inventory-key') || 'B',
   'jump-key': window.localStorage.getItem('RPG-Side.htm-jump-key') || 'W',
   'movement-keys': window.localStorage.getItem('RPG-Side.htm-movement-keys') || 'AD',
-  'ms-per-frame': parseInt(window.localStorage.getItem('RPG-Side.htm-ms-per-frame')) || 25,
+  'ms-per-frame': parseInt(window.localStorage.getItem('RPG-Side.htm-ms-per-frame'), 10) || 25,
   'spellbook-key': window.localStorage.getItem('RPG-Above.htm-spellbook-key') || 'V',
 };
 var ui = 0;
