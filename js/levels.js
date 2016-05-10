@@ -141,7 +141,7 @@ function load_level(id){
     });
 
     create_npc({
-      'friendly': true,
+      'team': 0,
       'x': 0,
       'y': 115,
     });
