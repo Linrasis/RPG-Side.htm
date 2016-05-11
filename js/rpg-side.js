@@ -62,10 +62,10 @@ function draw_logic(){
     // Draw player and targeting direction.
     buffer.fillStyle = settings['color'];
     buffer.fillRect(
-      -17,
-      -17,
-      34,
-      34
+      -player['width-half'],
+      -player['height-half'],
+      player['width'],
+      player['height']
     );
     var endpoint = get_fixed_length_line(
       0,
@@ -262,10 +262,10 @@ function logic(){
         var temp_object_right_y = world_dynamic[object]['y'] + world_dynamic[object]['height'];
 
         // Check if player position + movement is within bounds of object.
-        if(player['x'] + player_dx - 17 > temp_object_right_x
-          || player['x'] + player_dx + 17 < world_dynamic[object]['x']
-          || player['y'] + player['y-velocity'] - 17 > temp_object_right_y
-          || player['y'] + player['y-velocity'] + 17 < world_dynamic[object]['y']){
+        if(player['x'] + player_dx - player['width-half'] > temp_object_right_x
+          || player['x'] + player_dx + player['width-half'] < world_dynamic[object]['x']
+          || player['y'] + player['y-velocity'] - player['height-half'] > temp_object_right_y
+          || player['y'] + player['y-velocity'] + player['height-half'] < world_dynamic[object]['y']){
             continue;
         }
 
@@ -278,37 +278,37 @@ function logic(){
 
         // Handle collisions with platforms while jumping or falling.
         if(player['y-velocity'] != 0
-          && player['x'] != world_dynamic[object]['x'] - 17
-          && player['x'] != temp_object_right_x + 17){
+          && player['x'] != world_dynamic[object]['x'] - player['width-half']
+          && player['x'] != temp_object_right_x + player['width-half']){
             if(player['y-velocity'] > 0){
                 if(player['y'] + player['y-velocity'] <= world_dynamic[object]['y'] - 10
-                  && player['y'] + player['y-velocity'] > world_dynamic[object]['y'] - 17){
+                  && player['y'] + player['y-velocity'] > world_dynamic[object]['y'] - player['height-half']){
                     can_jump = true;
-                    player['y-velocity'] = world_dynamic[object]['y'] - player['y'] - 17;
+                    player['y-velocity'] = world_dynamic[object]['y'] - player['y'] - player['height-half'];
                     player_dy = 0;
                 }
 
-            }else if(player['y'] + player['y-velocity'] < temp_object_right_y + 17
+            }else if(player['y'] + player['y-velocity'] < temp_object_right_y + player['height-half']
               && player['y'] + player['y-velocity'] >= temp_object_right_y + 10){
-                player['y-velocity'] = temp_object_right_y - player['y'] + 17;
+                player['y-velocity'] = temp_object_right_y - player['y'] + player['height-half'];
             }
         }
 
         // Handle collisions with platforms while moving left/right.
         if(key_left
-          && player['y'] + 17 > world_dynamic[object]['y']
-          && player['y'] - 17 < temp_object_right_y
-          && player['x'] != world_dynamic[object]['x'] - 17
+          && player['y'] + player['height-half'] > world_dynamic[object]['y']
+          && player['y'] - player['height-half'] < temp_object_right_y
+          && player['x'] != world_dynamic[object]['x'] - player['width-half']
           && player['x'] > world_dynamic[object]['x']){
-            player_dx = temp_object_right_x - player['x'] + 17;
+            player_dx = temp_object_right_x - player['x'] + player['width-half'];
         }
 
         if(key_right
-          && player['y'] + 17 > world_dynamic[object]['y']
-          && player['y'] - 17 < temp_object_right_y
-          && player['x'] != temp_object_right_x + 17
+          && player['y'] + player['height-half'] > world_dynamic[object]['y']
+          && player['y'] - player['height-half'] < temp_object_right_y
+          && player['x'] != temp_object_right_x + player['width-half']
           && player['x'] < world_dynamic[object]['x']){
-            player_dx = world_dynamic[object]['x'] - player['x'] - 17;
+            player_dx = world_dynamic[object]['x'] - player['x'] - player['width-half'];
         }
     }
 
