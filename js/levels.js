@@ -89,64 +89,115 @@ function load_level(id){
       },
     });
 
-    var loop_counter = 9;
-    do{
-        rpg_world_dynamic_create({
-          'color': '#555',
-          'x': -150 + 25 * loop_counter,
-          'y': 25,
-        });
-    }while(loop_counter--);
     rpg_world_dynamic_create({
       'color': '#555',
-      'x': -125,
-      'y': 0,
-    });
-    rpg_world_dynamic_create({
-      'color': '#555',
-      'x': 75,
+      'height': 100,
+      'width': 25,
+      'x': -175,
       'y': -50,
     });
-    loop_counter = 9;
-    do{
-        rpg_world_dynamic_create({
-          'color': '#555',
-          'x': -175 + 25 * loop_counter,
-          'y': 150,
-        });
-    }while(loop_counter--);
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 25,
+      'width': 250,
+      'x': -150,
+      'y': -50,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 25,
+      'width': 275,
+      'x': -150,
+      'y': 25,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 175,
+      'width': 25,
+      'x': 75,
+      'y': -225,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 175,
+      'width': 25,
+      'x': 75,
+      'y': 50,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 25,
+      'width': 250,
+      'x': 100,
+      'y': -225,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 25,
+      'width': 250,
+      'x': 100,
+      'y': 200,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 25,
+      'width': 75,
+      'x': 100,
+      'y': -100,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 25,
+      'width': 75,
+      'x': 175,
+      'y': 25,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 450,
+      'width': 25,
+      'x': 350,
+      'y': -225,
+    });
 
     rpg_world_dynamic_create({
       'collision': false,
       'color': '#700',
       'effect': 1,
-      'height': 50,
-      'width': 50,
-      'x': 150,
-      'y': 150,
+      'height': 25,
+      'width': 250,
+      'x': 100,
+      'y': 175,
     });
     rpg_world_dynamic_create({
       'collision': false,
       'color': '#66f',
       'effect': 1,
       'effect-stat': 'mana',
+      'height': 25,
+      'width': 25,
+      'x': 225,
+      'y': 0,
+    });
+    rpg_world_static.push({
+      'color': '#333',
       'height': 50,
-      'width': 50,
-      'x': 100,
-      'y': 150,
+      'width': 250,
+      'x': -150,
+      'y': -25,
     });
     rpg_world_static.push({
       'color': '#111',
-      'height': 500,
-      'width': 500,
-      'x': -250,
-      'y': -250,
+      'height': 400,
+      'width': 250,
+      'x': 100,
+      'y': -200,
     });
 
     rpg_npc_create({
       'team': 0,
-      'x': 0,
-      'y': 115,
+      'x': -125,
+      'y': 15,
     });
     rpg_npc_create({
       'selected': 'manabolt',
@@ -167,7 +218,7 @@ function load_level(id){
           'max': 10,
         },
       },
-      'x': 200,
-      'y': -100,
+      'x': 125,
+      'y': -110,
     });
 }
