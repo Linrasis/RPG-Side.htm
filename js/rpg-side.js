@@ -291,7 +291,7 @@ function logic(){
         if(key_left
           && rpg_player['y'] + rpg_player['height-half'] > rpg_world_dynamic[object]['y']
           && rpg_player['y'] - rpg_player['height-half'] < temp_object_right_y
-          && rpg_player['x'] != rpg_world_dynamic[object]['x'] - rpg_player['width-half']
+          && rpg_player['x'] < rpg_world_dynamic[object]['x'] - rpg_player['width-half']
           && rpg_player['x'] > rpg_world_dynamic[object]['x']){
             player_dx = temp_object_right_x - rpg_player['x'] + rpg_player['width-half'];
         }
