@@ -121,7 +121,7 @@ function load_level(id){
     rpg_world_dynamic_create({
       'color': '#555',
       'height': 25,
-      'width': 225,
+      'width': 275,
       'x': -150,
       'y': 25,
     });
@@ -134,10 +134,10 @@ function load_level(id){
     });
     rpg_world_dynamic_create({
       'color': '#555',
-      'height': 200,
+      'height': 175,
       'width': 25,
       'x': 75,
-      'y': 25,
+      'y': 50,
     });
     rpg_world_dynamic_create({
       'color': '#555',
