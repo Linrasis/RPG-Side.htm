@@ -114,30 +114,30 @@ function load_level(id){
     rpg_world_dynamic_create({
       'color': '#555',
       'height': 25,
-      'width': 250,
+      'width': 225,
       'x': -150,
       'y': -50,
     });
     rpg_world_dynamic_create({
       'color': '#555',
       'height': 25,
-      'width': 275,
+      'width': 225,
       'x': -150,
       'y': 25,
     });
     rpg_world_dynamic_create({
       'color': '#555',
-      'height': 175,
+      'height': 200,
       'width': 25,
       'x': 75,
       'y': -225,
     });
     rpg_world_dynamic_create({
       'color': '#555',
-      'height': 175,
+      'height': 200,
       'width': 25,
       'x': 75,
-      'y': 50,
+      'y': 25,
     });
     rpg_world_dynamic_create({
       'color': '#555',
