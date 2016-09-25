@@ -89,6 +89,21 @@ function load_level(id){
       },
     });
 
+    rpg_world_static.push({
+      'color': '#333',
+      'height': 50,
+      'width': 250,
+      'x': -150,
+      'y': -25,
+    });
+    rpg_world_static.push({
+      'color': '#111',
+      'height': 400,
+      'width': 250,
+      'x': 100,
+      'y': -200,
+    });
+
     rpg_world_dynamic_create({
       'color': '#555',
       'height': 100,
@@ -134,32 +149,10 @@ function load_level(id){
     rpg_world_dynamic_create({
       'color': '#555',
       'height': 25,
-      'width': 250,
-      'x': 100,
-      'y': 200,
-    });
-    rpg_world_dynamic_create({
-      'color': '#555',
-      'height': 25,
       'width': 75,
       'x': 100,
       'y': -100,
     });
-    rpg_world_dynamic_create({
-      'color': '#555',
-      'height': 25,
-      'width': 75,
-      'x': 175,
-      'y': 25,
-    });
-    rpg_world_dynamic_create({
-      'color': '#555',
-      'height': 450,
-      'width': 25,
-      'x': 350,
-      'y': -225,
-    });
-
     rpg_world_dynamic_create({
       'collision': false,
       'color': '#700',
@@ -168,6 +161,20 @@ function load_level(id){
       'width': 250,
       'x': 100,
       'y': 175,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 25,
+      'width': 250,
+      'x': 100,
+      'y': 200,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 25,
+      'width': 75,
+      'x': 175,
+      'y': 25,
     });
     rpg_world_dynamic_create({
       'collision': false,
@@ -179,19 +186,12 @@ function load_level(id){
       'x': 225,
       'y': 0,
     });
-    rpg_world_static.push({
-      'color': '#333',
-      'height': 50,
-      'width': 250,
-      'x': -150,
-      'y': -25,
-    });
-    rpg_world_static.push({
-      'color': '#111',
-      'height': 400,
-      'width': 250,
-      'x': 100,
-      'y': -200,
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 450,
+      'width': 25,
+      'x': 350,
+      'y': -225,
     });
 
     rpg_npc_create({

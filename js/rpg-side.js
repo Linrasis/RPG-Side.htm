@@ -274,6 +274,10 @@ function logic(){
             );
         }
 
+        if(!rpg_world_dynamic[object]['collision']){
+            continue;
+        }
+
         // Handle collisions with platforms while jumping or falling.
         if(rpg_player['y-velocity'] != 0
           && rpg_player['x'] != rpg_world_dynamic[object]['x'] - rpg_player['width-half']
