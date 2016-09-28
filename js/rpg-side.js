@@ -322,7 +322,7 @@ function logic(){
       && !rpg_player['dead']){
         if(jump_permission
           && key_jump){
-            rpg_player['y-velocity'] = -8;
+            rpg_player['y-velocity'] = -rpg_player['stats']['jump-velocity'];
             jump_permission = false;
 
         }else{

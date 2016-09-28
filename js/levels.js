@@ -78,6 +78,7 @@ function load_level(id){
             'max': 1000,
           },
         },
+        'jump-velocity': 8,
         'mana': {
           'current': 10,
           'max': 10,
