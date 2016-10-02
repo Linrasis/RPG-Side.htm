@@ -97,13 +97,6 @@ function load_level(id){
       'x': -150,
       'y': -25,
     });
-    rpg_world_static.push({
-      'color': '#111',
-      'height': 400,
-      'width': 250,
-      'x': 100,
-      'y': -200,
-    });
 
     rpg_world_dynamic_create({
       'color': '#555',
@@ -128,17 +121,33 @@ function load_level(id){
     });
     rpg_world_dynamic_create({
       'color': '#555',
+      'height': 175,
+      'width': 25,
+      'x': 0,
+      'y': 50,
+    });
+    rpg_world_dynamic_create({
+      'collision': false,
+      'color': '#700',
+      'effect': 1,
+      'height': 25,
+      'width': 325,
+      'x': 25,
+      'y': 175,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
+      'height': 25,
+      'width': 325,
+      'x': 25,
+      'y': 200,
+    });
+    rpg_world_dynamic_create({
+      'color': '#555',
       'height': 200,
       'width': 25,
       'x': 75,
       'y': -225,
-    });
-    rpg_world_dynamic_create({
-      'color': '#555',
-      'height': 175,
-      'width': 25,
-      'x': 75,
-      'y': 50,
     });
     rpg_world_dynamic_create({
       'color': '#555',
@@ -153,22 +162,6 @@ function load_level(id){
       'width': 75,
       'x': 100,
       'y': -100,
-    });
-    rpg_world_dynamic_create({
-      'collision': false,
-      'color': '#700',
-      'effect': 1,
-      'height': 25,
-      'width': 250,
-      'x': 100,
-      'y': 175,
-    });
-    rpg_world_dynamic_create({
-      'color': '#555',
-      'height': 25,
-      'width': 250,
-      'x': 100,
-      'y': 200,
     });
     rpg_world_dynamic_create({
       'color': '#555',
