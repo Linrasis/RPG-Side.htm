@@ -210,10 +210,11 @@ function logic(){
             continue;
         }
 
-        // If player and object aren't moving, no collision checks.
+        // If player and object aren't moving, and object has no effect, no collision checks.
         if(player_dx === 0
           && player_dy === 0
-          && rpg_characters[0]['y-velocity'] === 0){
+          && rpg_characters[0]['y-velocity'] === 0
+          && rpg_world_dynamic[object]['effect'] === 0){
             continue;
         }
 
