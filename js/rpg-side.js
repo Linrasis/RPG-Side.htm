@@ -428,7 +428,7 @@ window.onload = function(e){
 window.onmousedown = function(e){
     if(canvas_mode <= 0
       || (mouse_x <= 200
-        && mouse_y <= 250)){
+        && mouse_y <= 200)){
         return;
     }
 
