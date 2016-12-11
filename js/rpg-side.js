@@ -235,11 +235,11 @@ function logic(){
         }
 
         if(rpg_world_dynamic[object]['effect'] > 0){
-            rpg_character_affect(
-              0,
-              rpg_world_dynamic[object]['effect-stat'],
-              rpg_world_dynamic[object]['effect']
-            );
+            rpg_character_affect({
+              'character': 0,
+              'effect': rpg_world_dynamic[object]['effect'],
+              'stat': rpg_world_dynamic[object]['effect-stat'],
+            });
         }
 
         if(!rpg_world_dynamic[object]['collision']){
@@ -313,15 +313,14 @@ function mouse_wheel(e){
         return;
     }
 
-    rpg_item_select(
-      0,
-      rpg_characters[0]['selected']
+    rpg_item_select({
+      'id': rpg_characters[0]['selected']
         + (
           (e.wheelDelta || -e.detail) > 0
             ? -1
             : 1
-        )
-    );
+        ),
+    });
 }
 
 function setmode_logic(newgame){
