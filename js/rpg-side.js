@@ -416,16 +416,16 @@ window.onload = function(e){
         );
     }
 
-    settings_init(
-      'RPG-Side.htm-',
-      {
+    settings_init({
+      'prefix': 'RPG-Side.htm-',
+      'settings': {
         'audio-volume': 1,
         'color': '#009900',
         'jump-key': 'W',
         'movement-keys': 'AD',
         'ms-per-frame': 25,
-      }
-    );
+      },
+    });
     canvas_init();
 };
 
