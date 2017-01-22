@@ -340,13 +340,13 @@ function setmode_logic(newgame){
           + '<div><input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
           + '<input id=color type=color>Color<br>'
           + '<input id=ms-per-frame>ms/Frame<br>'
-          + '<a onclick=settings_reset()>Reset Settings</a></div></div>';
-        settings_update();
+          + '<a onclick=storage_reset()>Reset Settings</a></div></div>';
+        storage_update();
 
     // New game mode.
     }else{
         if(newgame){
-            settings_save();
+            storage_save();
         }
     }
 }
@@ -361,26 +361,15 @@ var mouse_x = 0;
 var mouse_y = 0;
 
 window.onload = function(e){
-    if('onmousewheel' in window){
-        window.onmousewheel = mouse_wheel;
-
-    }else{
-        document.addEventListener(
-          'DOMMouseScroll',
-          mouse_wheel,
-          false
-        );
-    }
-
-    settings_init({
-      'prefix': 'RPG-Side.htm-',
-      'settings': {
+    storage_init({
+      'data': {
         'audio-volume': 1,
         'color': '#009900',
         'jump-key': 'W',
         'movement-keys': 'AD',
         'ms-per-frame': 25,
       },
+      'prefix': 'RPG-Side.htm-',
     });
     canvas_init();
 
@@ -399,13 +388,13 @@ window.onload = function(e){
 
         key = String.fromCharCode(key);
 
-        if(key === settings_settings['movement-keys'][0]){
+        if(key === storage_data['movement-keys'][0]){
             key_left = true;
 
-        }else if(key === settings_settings['movement-keys'][1]){
+        }else if(key === storage_data['movement-keys'][1]){
             key_right = true;
 
-        }else if(key === settings_settings['jump-key']){
+        }else if(key === storage_data['jump-key']){
             key_jump = true;
 
         }else if(key === 'Q'){
@@ -416,13 +405,13 @@ window.onload = function(e){
     window.onkeyup = function(e){
         var key = String.fromCharCode(e.keyCode || e.which);
 
-        if(key === settings_settings['movement-keys'][0]){
+        if(key === storage_data['movement-keys'][0]){
             key_left = false;
 
-        }else if(key === settings_settings['movement-keys'][1]){
+        }else if(key === storage_data['movement-keys'][1]){
             key_right = false;
 
-        }else if(key === settings_settings['jump-key']){
+        }else if(key === storage_data['jump-key']){
             key_jump = false;
             jump_permission = true;
         }
@@ -452,4 +441,15 @@ window.onload = function(e){
     window.onmouseup = function(e){
         mouse_lock_x = -1;
     };
+
+    if('onmousewheel' in window){
+        window.onmousewheel = mouse_wheel;
+
+    }else{
+        document.addEventListener(
+          'DOMMouseScroll',
+          mouse_wheel,
+          false
+        );
+    }
 };
