@@ -304,8 +304,7 @@ function logic(){
         );
     }
 
-    rpg_character_handle();
-    rpg_particle_handle();
+    rpg_handle_all();
 }
 
 function mouse_wheel(e){
