@@ -194,21 +194,24 @@ function load_level(id){
         'y': 15,
       },
     });
-    rpg_character_create({
+
+    rpg_spawner_create({
       'properties': {
-        'inventory': [
-          rpg_item_create({
-            'properties': {
-              'label': 'Scroll of Manabolt',
-              'owner': 2,
-              'spell': {
-                'color': '#00f',
-                'damage': 1,
-                'reload': 10,
+        'character': {
+          'inventory': [
+            rpg_item_create({
+              'properties': {
+                'label': 'Scroll of Manabolt',
+                'owner': 2,
+                'spell': {
+                  'color': '#00f',
+                  'damage': 1,
+                  'reload': 10,
+                },
               },
-            },
-          }),
-        ],
+            }),
+          ],
+        },
         'x': 125,
         'y': -110,
       },
